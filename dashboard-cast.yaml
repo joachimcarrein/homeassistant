@@ -17,45 +17,45 @@ blueprint:
       description: Path to lovelace. Defaults to 'lovelace' if empty.
       default: 'lovelace'
 
-trigger:
-  - platform: state
-    entity_id: !input 'player'
-    to: "off"
-    for: 00:00:20
-  - platform: state
-    entity_id: !input 'player'
-    to: "paused"
-    for: 00:00:20
+  trigger:
+    - platform: state
+      entity_id: !input 'player'
+      to: "off"
+      for: 00:00:20
+    - platform: state
+      entity_id: !input 'player'
+      to: "paused"
+      for: 00:00:20
 
-action:
-  - service: media_player.volume_mute
-    data:
-      is_volume_muted: true
-    target:
-      entity_id: !input 'player'
-  - service: media_player.turn_off
-    target:
-      entity_id: !input 'player'
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 2
-      milliseconds: 0
-  - service: media_player.turn_on
-    target:
-      entity_id: !input 'player'
-  - service: cast.show_lovelace_view
-    data:
-      entity_id: !input 'player'
-      dashboard_path: !input 'dashboard'
-      view_path: !input 'view'
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 10
-      milliseconds: 0
-  - service: media_player.volume_mute
-    data:
-      is_volume_muted: false
-    target:
-      entity_id: !input 'player'
+  action:
+    - service: media_player.volume_mute
+      data:
+        is_volume_muted: true
+      target:
+        entity_id: !input 'player'
+    - service: media_player.turn_off
+      target:
+        entity_id: !input 'player'
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 2
+        milliseconds: 0
+    - service: media_player.turn_on
+      target:
+        entity_id: !input 'player'
+    - service: cast.show_lovelace_view
+      data:
+        entity_id: !input 'player'
+        dashboard_path: !input 'dashboard'
+        view_path: !input 'view'
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 10
+        milliseconds: 0
+    - service: media_player.volume_mute
+      data:
+        is_volume_muted: false
+      target:
+        entity_id: !input 'player'
