@@ -19,6 +19,8 @@ blueprint:
       default: 'lovelace'
 
 trigger:
+  - platform: homeassistant
+    event: start
   - platform: state
     entity_id: !input 'player'
     to: 'off'
@@ -29,26 +31,38 @@ trigger:
     for: 00:00:20
 
 action:
-  - service: media_player.volume_mute
-    data:
-      is_volume_muted: true
-      entity_id: !input 'player'
-  - service: media_player.turn_off
-    data:
-      entity_id: !input 'player'
-  - delay:
-      seconds: 2
-  - service: media_player.turn_on
-    data:
-      entity_id: !input 'player'
-  - service: cast.show_lovelace_view
-    data:
-      entity_id: !input 'player'
-      dashboard_path: !input 'dashboard'
-      view_path: !input 'view'
-  - delay:
-      seconds: 10
-  - service: media_player.volume_mute
-    data:
-      is_volume_muted: false
-      entity_id: !input 'player'
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: !input 'player'
+          state: 'off'
+        - condition: state
+          entity_id: !input 'player'
+          state: 'paused'
+          for: 00:00:20
+      sequence:
+        - service: media_player.volume_mute
+          data:
+            is_volume_muted: true
+            entity_id: !input 'player'
+        - service: media_player.turn_off
+          data:
+            entity_id: !input 'player'
+        - delay:
+            seconds: 2
+        - service: media_player.turn_on
+          data:
+            entity_id: !input 'player'
+        - service: cast.show_lovelace_view
+          data:
+            entity_id: !input 'player'
+            dashboard_path: !input 'dashboard'
+            view_path: !input 'view'
+        - delay:
+            seconds: 10
+        - service: media_player.volume_mute
+          data:
+            is_volume_muted: false
+            entity_id: !input 'player'
