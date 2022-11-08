@@ -12,6 +12,7 @@ blueprint:
     view:
       name: Lovelace view path
       description: Path of the view to cast.
+      default: '0'
     dashboard:
       name: Lovelace dashboard
       description: Path to lovelace. Defaults to 'lovelace' if empty.
