@@ -17,15 +17,15 @@ blueprint:
       description: Path to lovelace. Defaults to 'lovelace' if empty.
       default: 'lovelace'
 
-  trigger:
-    - platform: state
-      entity_id: !input 'player'
-      to: "off"
-      for: 00:00:20
-    - platform: state
-      entity_id: !input 'player'
-      to: "paused"
-      for: 00:00:20
+trigger:
+  - platform: state
+    entity_id: !input 'player'
+    to: "off"
+    for: 00:00:20
+  - platform: state
+    entity_id: !input 'player'
+    to: "paused"
+    for: 00:00:20
 
 action:
   - service: media_player.volume_mute
