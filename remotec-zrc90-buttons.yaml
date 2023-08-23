@@ -1,0 +1,222 @@
+blueprint:
+  name: Remotec ZRC-90 Scene Master
+  description: Create an automation for the Remotec ZRC-90 8 button remote using ZWAVE-JS integration
+  domain: automation
+  input:
+    remotec_zrc90:
+      name: Remotec ZRC-90
+      description: The Remotec ZRC-90 to interact with.
+      selector:
+        device:
+          integration: zwave_js
+          manufacturer: Remotec
+          model: BW8510
+    button_1_1:
+      name: Press Button One 1x
+      description: Action to run on button press once.
+      default: []
+      selector:
+        action: {}
+    button_1_2:
+      name: Press Button One 2x
+      description: Action to run on button press twice.
+      default: []
+      selector:
+        action: {}
+    button_1_held:
+      name: Hold Button One
+      description: Action to run on button hold.
+      default: []
+      selector:
+        action: {}
+    button_2_1:
+      name: Press Button Two 1x
+      description: Action to run on button press once.
+      default: []
+      selector:
+        action: {}
+    button_2_2:
+      name: Press Button Two 2x
+      description: Action to run on button press twice.
+      default: []
+      selector:
+        action: {}
+    button_2_held:
+      name: Hold Button Two
+      description: Action to run on button hold.
+      default: []
+      selector:
+        action: {}
+    button_3_1:
+      name: Press Button Three 1x
+      description: Action to run on button press once.
+      default: []
+      selector:
+        action: {}
+    button_3_2:
+      name: Press Button Three 2x
+      description: Action to run on button press twice.
+      default: []
+      selector:
+        action: {}
+    button_3_held:
+      name: Hold Button Three
+      description: Action to run on button hold.
+      default: []
+      selector:
+        action: {}
+    button_4_1:
+      name: Press Button Four 1x
+      description: Action to run on button press once.
+      default: []
+      selector:
+        action: {}
+    button_4_2:
+      name: Press Button Four 2x
+      description: Action to run on button press twice.
+      default: []
+      selector:
+        action: {}
+    button_4_held:
+      name: Hold Button Four
+      description: Action to run on button hold.
+      default: []
+      selector:
+        action: {}
+    button_5_1:
+      name: Press Button Five 1x
+      description: Action to run on button press once.
+      default: []
+      selector:
+        action: {}
+    button_5_2:
+      name: Press Button Five 2x
+      description: Action to run on button press twice.
+      default: []
+      selector:
+        action: {}
+    button_5_held:
+      name: Hold Button Five
+      description: Action to run on button hold.
+      default: []
+      selector:
+        action: {}
+    button_6_1:
+      name: Press Button Six 1x
+      description: Action to run on button press once.
+      default: []
+      selector:
+        action: {}
+    button_6_2:
+      name: Press Button Six 2x
+      description: Action to run on button press twice.
+      default: []
+      selector:
+        action: {}
+    button_6_held:
+      name: Hold Button Six
+      description: Action to run on button hold.
+      default: []
+      selector:
+        action: {}
+    button_7_1:
+      name: Press Button Seven 1x
+      description: Action to run on button press once.
+      default: []
+      selector:
+        action: {}
+    button_7_2:
+      name: Press Button Seven 2x
+      description: Action to run on button press twice.
+      default: []
+      selector:
+        action: {}
+    button_7_held:
+      name: Hold Button Seven
+      description: Action to run on button hold.
+      default: []
+      selector:
+        action: {}
+    button_8_1:
+      name: Press Button Eight 1x
+      description: Action to run on button press once.
+      default: []
+      selector:
+        action: {}
+    button_8_2:
+      name: Press Button Eight 2x
+      description: Action to run on button press twice.
+      default: []
+      selector:
+        action: {}
+    button_8_held:
+      name: Hold Button Eight
+      description: Action to run on button hold.
+      default: []
+      selector:
+        action: {}
+
+mode: single
+
+max_exceeded: silent
+
+trigger:
+  platform: event
+  event_type: zwave_js_value_notification
+  event_data:
+    command_class_name: Central Scene
+    device_id: !input remotec_zrc90
+action:
+  - variables:
+      scene_id: "{{ trigger.event.data.property_key_name }}"
+      scene_value_id: "{{ trigger.event.data.value }}"
+
+  - choose:
+      - conditions: "{{ scene_id == '001' and scene_value_id == 'KeyPressed' }}"
+        sequence: !input button_1_1
+      - conditions: "{{ scene_id == '001' and scene_value_id == 'KeyPressed2x' }}"
+        sequence: !input button_1_2
+      - conditions: "{{ scene_id == '001' and scene_value_id == 'KeyHeldDown' }}"
+        sequence: !input button_1_held
+      - conditions: "{{ scene_id == '002' and scene_value_id == 'KeyPressed' }}"
+        sequence: !input button_2_1
+      - conditions: "{{ scene_id == '002' and scene_value_id == 'KeyPressed2x' }}"
+        sequence: !input button_2_2
+      - conditions: "{{ scene_id == '002' and scene_value_id == 'KeyHeldDown' }}"
+        sequence: !input button_2_held
+      - conditions: "{{ scene_id == '003' and scene_value_id == 'KeyPressed' }}"
+        sequence: !input button_3_1
+      - conditions: "{{ scene_id == '003' and scene_value_id == 'KeyPressed2x' }}"
+        sequence: !input button_3_2
+      - conditions: "{{ scene_id == '003' and scene_value_id == 'KeyHeldDown' }}"
+        sequence: !input button_3_held
+      - conditions: "{{ scene_id == '004' and scene_value_id == 'KeyPressed' }}"
+        sequence: !input button_4_1
+      - conditions: "{{ scene_id == '004' and scene_value_id == 'KeyPressed2x' }}"
+        sequence: !input button_4_2
+      - conditions: "{{ scene_id == '004' and scene_value_id == 'KeyHeldDown' }}"
+        sequence: !input button_4_held
+      - conditions: "{{ scene_id == '005' and scene_value_id == 'KeyPressed' }}"
+        sequence: !input button_5_1
+      - conditions: "{{ scene_id == '005' and scene_value_id == 'KeyPressed2x' }}"
+        sequence: !input button_5_2
+      - conditions: "{{ scene_id == '005' and scene_value_id == 'KeyHeldDown' }}"
+        sequence: !input button_5_held
+      - conditions: "{{ scene_id == '006' and scene_value_id == 'KeyPressed' }}"
+        sequence: !input button_6_1
+      - conditions: "{{ scene_id == '006' and scene_value_id == 'KeyPressed2x' }}"
+        sequence: !input button_6_2
+      - conditions: "{{ scene_id == '006' and scene_value_id == 'KeyHeldDown' }}"
+        sequence: !input button_6_held
+      - conditions: "{{ scene_id == '007' and scene_value_id == 'KeyPressed' }}"
+        sequence: !input button_7_1
+      - conditions: "{{ scene_id == '007' and scene_value_id == 'KeyPressed2x' }}"
+        sequence: !input button_7_2
+      - conditions: "{{ scene_id == '007' and scene_value_id == 'KeyHeldDown' }}"
+        sequence: !input button_7_held
+      - conditions: "{{ scene_id == '008' and scene_value_id == 'KeyPressed' }}"
+        sequence: !input button_8_1
+      - conditions: "{{ scene_id == '008' and scene_value_id == 'KeyPressed2x' }}"
+        sequence: !input button_8_2
+      - conditions: "{{ scene_id == '008' and scene_value_id == 'KeyHeldDown' }}"
+        sequence: !input button_8_held
