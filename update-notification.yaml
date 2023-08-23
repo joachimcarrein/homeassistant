@@ -37,9 +37,7 @@ blueprint:
       selector:
         device:
           filter:
-            [
-              integration: binary_sensor
-            ]
+            - integration: mobile_app
     include_release_notes:
       name: Include release notes
       description: Toggle if you'd like to receive the release notes within the notification,
@@ -53,7 +51,6 @@ blueprint:
       selector:
         boolean: {}
       default: true
-  source_url: https://gist.github.com/Klumper/0ad49c0613606b14f1a56551e4a7d737
 trigger:
   platform: state
   entity_id: !input 'updater'
