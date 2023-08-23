@@ -1,6 +1,7 @@
 blueprint:
   name: Cast to Google Hub
-  description: 'Cast a lovelace view to a Google Hub. If the hub is used for streaming and stops, recasts the dashboard'
+  description: Cast a lovelace view to a Google Hub. If the hub is used for streaming
+    and stops, recasts the dashboard
   domain: automation
   input:
     player:
@@ -8,7 +9,9 @@ blueprint:
       description: Google Hub to cast to
       selector:
         entity:
-          integration: cast
+          filter:
+            integration: cast
+          multiple: false
     view:
       name: Lovelace view path
       description: Path of the view to cast.
@@ -16,50 +19,49 @@ blueprint:
     dashboard:
       name: Lovelace dashboard
       description: Path to lovelace. Defaults to 'lovelace' if empty.
-      default: 'lovelace'
-
+      default: lovelace
+  source_url: https://raw.githubusercontent.com/joachimcarrein/homeassistant/main/dashboard-cast.yaml
 trigger:
-  - platform: homeassistant
-    event: start
-  - platform: state
-    entity_id: !input 'player'
-    to: 'off'
-    for: 00:00:20
-  - platform: state
-    entity_id: !input 'player'
-    to: 'paused'
-    for: 00:00:20
-
+- platform: homeassistant
+  event: start
+- platform: state
+  entity_id: !input player
+  to: 'off'
+  for: 00:00:20
+- platform: state
+  entity_id: !input player
+  to: paused
+  for: 00:00:20
 action:
-  - choose:
-    - conditions:
-      - condition: or
-        conditions:
-        - condition: state
-          entity_id: !input 'player'
-          state: 'off'
-        - condition: state
-          entity_id: !input 'player'
-          state: 'paused'
-          for: 00:00:20
-      sequence:
-        - service: media_player.volume_mute
-          data:
-            is_volume_muted: true
-            entity_id: !input 'player'
-        - service: media_player.turn_off
-          data:
-            entity_id: !input 'player'
-        - delay:
-            seconds: 2
-        - service: cast.show_lovelace_view
-          data:
-            entity_id: !input 'player'
-            dashboard_path: !input 'dashboard'
-            view_path: !input 'view'
-        - delay:
-            seconds: 10
-        - service: media_player.volume_mute
-          data:
-            is_volume_muted: false
-            entity_id: !input 'player'
+- choose:
+  - conditions:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: !input player
+        state: 'off'
+      - condition: state
+        entity_id: !input player
+        state: paused
+        for: 00:00:20
+    sequence:
+    - service: media_player.volume_mute
+      data:
+        is_volume_muted: true
+        entity_id: !input player
+    - service: media_player.turn_off
+      data:
+        entity_id: !input player
+    - delay:
+        seconds: 2
+    - service: cast.show_lovelace_view
+      data:
+        entity_id: !input player
+        dashboard_path: !input dashboard
+        view_path: !input view
+    - delay:
+        seconds: 10
+    - service: media_player.volume_mute
+      data:
+        is_volume_muted: false
+        entity_id: !input player
