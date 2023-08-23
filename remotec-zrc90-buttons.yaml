@@ -8,9 +8,10 @@ blueprint:
       description: The Remotec ZRC-90 to interact with.
       selector:
         device:
-          integration: zwave_js
-          manufacturer: Remotec
-          model: BW8510
+          filter:
+            integration: zwave_js
+            manufacturer: Remotec
+            model: BW8510
     button_1_1:
       name: Press Button 1 1x
       description: Action to run on button press once.
