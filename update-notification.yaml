@@ -34,6 +34,12 @@ blueprint:
       name: Device to notify
       description: Device needs to run the official Home Assistant app to receive
         notifications
+      selector:
+        device:
+          filter:
+            [
+              integration: binary_sensor
+            ]
     include_release_notes:
       name: Include release notes
       description: Toggle if you'd like to receive the release notes within the notification,
