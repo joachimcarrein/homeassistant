@@ -26,7 +26,7 @@ blueprint:
         action: {}
     button_1_held:
       name: Hold Button 1
-      description: Action to run on button hold.
+      description: Action to run on button hold. (Fires multiple times when held)
       default: []
       selector:
         action: {}
@@ -50,7 +50,7 @@ blueprint:
         action: {}
     button_2_held:
       name: Hold Button 2
-      description: Action to run on button hold.
+      description: Action to run on button hold. (Fires multiple times when held)
       default: []
       selector:
         action: {}
@@ -74,7 +74,7 @@ blueprint:
         action: {}
     button_3_held:
       name: Hold Button 3
-      description: Action to run on button hold.
+      description: Action to run on button hold. (Fires multiple times when held)
       default: []
       selector:
         action: {}
@@ -98,7 +98,7 @@ blueprint:
         action: {}
     button_4_held:
       name: Hold Button 4
-      description: Action to run on button hold.
+      description: Action to run on button hold. (Fires multiple times when held)
       default: []
       selector:
         action: {}
@@ -122,7 +122,7 @@ blueprint:
         action: {}
     button_5_held:
       name: Hold Button 5
-      description: Action to run on button hold.
+      description: Action to run on button hold. (Fires multiple times when held)
       default: []
       selector:
         action: {}
@@ -146,7 +146,7 @@ blueprint:
         action: {}
     button_6_held:
       name: Hold Button 6
-      description: Action to run on button hold.
+      description: Action to run on button hold. (Fires multiple times when held)
       default: []
       selector:
         action: {}
@@ -170,7 +170,7 @@ blueprint:
         action: {}
     button_7_held:
       name: Hold Button 7
-      description: Action to run on button hold.
+      description: Action to run on button hold. (Fires multiple times when held)
       default: []
       selector:
         action: {}
@@ -194,7 +194,7 @@ blueprint:
         action: {}
     button_8_held:
       name: Hold Button 8
-      description: Action to run on button hold.
+      description: Action to run on button hold. (Fires multiple times when held)
       default: []
       selector:
         action: {}
