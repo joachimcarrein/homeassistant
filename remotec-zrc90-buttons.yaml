@@ -31,7 +31,7 @@ blueprint:
       selector:
         action: {}
     button_1_hold_release:
-      name: Hold Button 1 Release
+      name: Hold & Release Button 1
       description: Action to run on button hold on release. (Doesn't trigger multiple times)
       default: []
       selector:
@@ -55,7 +55,7 @@ blueprint:
       selector:
         action: {}
     button_2_hold_release:
-      name: Hold Button 2 Release
+      name: Hold & Release Button 2
       description: Action to run on button hold on release. (Doesn't trigger multiple times)
       default: []
       selector:
@@ -79,7 +79,7 @@ blueprint:
       selector:
         action: {}
     button_3_hold_release:
-      name: Hold Button 3 Release
+      name: Hold & Release Button 3
       description: Action to run on button hold on release. (Doesn't trigger multiple times)
       default: []
       selector:
@@ -103,7 +103,7 @@ blueprint:
       selector:
         action: {}
     button_4_hold_release:
-      name: Hold Button 4 Release
+      name: Hold & Release Button 4
       description: Action to run on button hold on release. (Doesn't trigger multiple times)
       default: []
       selector:
@@ -127,7 +127,7 @@ blueprint:
       selector:
         action: {}
     button_5_hold_release:
-      name: Hold Button 5 Release
+      name: Hold & Release Button 5
       description: Action to run on button hold on release. (Doesn't trigger multiple times)
       default: []
       selector:
@@ -151,7 +151,7 @@ blueprint:
       selector:
         action: {}
     button_6_hold_release:
-      name: Hold Button 6 Release
+      name: Hold & Release Button 6
       description: Action to run on button hold on release. (Doesn't trigger multiple times)
       default: []
       selector:
@@ -175,7 +175,7 @@ blueprint:
       selector:
         action: {}
     button_7_hold_release:
-      name: Hold Button 7 Release
+      name: Hold & Release Button 7
       description: Action to run on button hold on release. (Doesn't trigger multiple times)
       default: []
       selector:
@@ -199,7 +199,7 @@ blueprint:
       selector:
         action: {}
     button_8_hold_release:
-      name: Hold Button 8 Release
+      name: Hold & Release Button 8
       description: Action to run on button hold on release. (Doesn't trigger multiple times)
       default: []
       selector:
