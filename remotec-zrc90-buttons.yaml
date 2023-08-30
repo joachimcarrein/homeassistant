@@ -221,67 +221,131 @@ action:
       scene_value_id: "{{ trigger.event.data.value }}"
 
   - choose:
-      - conditions: "{{ scene_id == '001' and scene_value_id == 'KeyPressed' }}"
+      - conditions:
+        - "{{ scene_id == '001' }}"
+        - "{{ scene_value_id == 'KeyPressed' }}"
         sequence: !input button_1_1
-      - conditions: "{{ scene_id == '001' and scene_value_id == 'KeyPressed2x' }}"
+      - conditions:
+        - "{{ scene_id == '001' }}"
+        - "{{ scene_value_id == 'KeyPressed2x' }}"
         sequence: !input button_1_2
-      - conditions: "{{ scene_id == '001' and scene_value_id == 'KeyHeldDown' }}"
+      - conditions:
+        - "{{ scene_id == '001' }}"
+        - "{{ scene_value_id == 'KeyHeldDown' }}"
         sequence: !input button_1_held
-      - conditions: "{{ scene_id == '001' and scene_value_id == 'KeyReleased' }}"
+      - conditions:
+        - "{{ scene_id == '001' }}"
+        - "{{ scene_value_id == 'KeyReleased' }}"
         sequence: !input button_1_hold_release
-      - conditions: "{{ scene_id == '002' and scene_value_id == 'KeyPressed' }}"
+      - conditions:
+        - "{{ scene_id == '002' }}"
+        - "{{ scene_value_id == 'KeyPressed' }}"
         sequence: !input button_2_1
-      - conditions: "{{ scene_id == '002' and scene_value_id == 'KeyPressed2x' }}"
+      - conditions:
+        - "{{ scene_id == '002' }}"
+        - "{{ scene_value_id == 'KeyPressed2x' }}"
         sequence: !input button_2_2
-      - conditions: "{{ scene_id == '002' and scene_value_id == 'KeyHeldDown' }}"
+      - conditions:
+        - "{{ scene_id == '002' }}"
+        - "{{ scene_value_id == 'KeyHeldDown' }}"
         sequence: !input button_2_held
-      - conditions: "{{ scene_id == '002' and scene_value_id == 'KeyReleased' }}"
+      - conditions:
+        - "{{ scene_id == '002' }}"
+        - "{{ scene_value_id == 'KeyReleased' }}"
         sequence: !input button_2_hold_release
-      - conditions: "{{ scene_id == '003' and scene_value_id == 'KeyPressed' }}"
+      - conditions:
+        - "{{ scene_id == '003' }}"
+        - "{{ scene_value_id == 'KeyPressed' }}"
         sequence: !input button_3_1
-      - conditions: "{{ scene_id == '003' and scene_value_id == 'KeyPressed2x' }}"
+      - conditions:
+        - "{{ scene_id == '003' }}"
+        - "{{ scene_value_id == 'KeyPressed2x' }}"
         sequence: !input button_3_2
-      - conditions: "{{ scene_id == '003' and scene_value_id == 'KeyHeldDown' }}"
+      - conditions:
+        - "{{ scene_id == '003' }}"
+        - "{{ scene_value_id == 'KeyHeldDown' }}"
         sequence: !input button_3_held
-      - conditions: "{{ scene_id == '003' and scene_value_id == 'KeyReleased' }}"
+      - conditions:
+        - "{{ scene_id == '003' }}"
+        - "{{ scene_value_id == 'KeyReleased' }}"
         sequence: !input button_3_hold_release
-      - conditions: "{{ scene_id == '004' and scene_value_id == 'KeyPressed' }}"
+      - conditions:
+        - "{{ scene_id == '004' }}"
+        - "{{ scene_value_id == 'KeyPressed' }}"
         sequence: !input button_4_1
-      - conditions: "{{ scene_id == '004' and scene_value_id == 'KeyPressed2x' }}"
+      - conditions:
+        - "{{ scene_id == '004' }}"
+        - "{{ scene_value_id == 'KeyPressed2x' }}"
         sequence: !input button_4_2
-      - conditions: "{{ scene_id == '004' and scene_value_id == 'KeyHeldDown' }}"
+      - conditions:
+        - "{{ scene_id == '004' }}"
+        - "{{ scene_value_id == 'KeyHeldDown' }}"
         sequence: !input button_4_held
-      - conditions: "{{ scene_id == '004' and scene_value_id == 'KeyReleased' }}"
+      - conditions:
+        - "{{ scene_id == '004' }}"
+        - "{{ scene_value_id == 'KeyReleased' }}"
         sequence: !input button_4_hold_release
-      - conditions: "{{ scene_id == '005' and scene_value_id == 'KeyPressed' }}"
+      - conditions:
+        - "{{ scene_id == '005' }}"
+        - "{{ scene_value_id == 'KeyPressed' }}"
         sequence: !input button_5_1
-      - conditions: "{{ scene_id == '005' and scene_value_id == 'KeyPressed2x' }}"
+      - conditions:
+        - "{{ scene_id == '005' }}"
+        - "{{ scene_value_id == 'KeyPressed2x' }}"
         sequence: !input button_5_2
-      - conditions: "{{ scene_id == '005' and scene_value_id == 'KeyHeldDown' }}"
+      - conditions:
+        - "{{ scene_id == '005' }}"
+        - "{{ scene_value_id == 'KeyHeldDown' }}"
         sequence: !input button_5_held
-      - conditions: "{{ scene_id == '005' and scene_value_id == 'KeyReleased' }}"
+      - conditions:
+        - "{{ scene_id == '005' }}"
+        - "{{ scene_value_id == 'KeyReleased' }}"
         sequence: !input button_5_hold_release
-      - conditions: "{{ scene_id == '006' and scene_value_id == 'KeyPressed' }}"
+      - conditions:
+        - "{{ scene_id == '006' }}"
+        - "{{ scene_value_id == 'KeyPressed' }}"
         sequence: !input button_6_1
-      - conditions: "{{ scene_id == '006' and scene_value_id == 'KeyPressed2x' }}"
+      - conditions:
+        - "{{ scene_id == '006' }}"
+        - "{{ scene_value_id == 'KeyPressed2x' }}"
         sequence: !input button_6_2
-      - conditions: "{{ scene_id == '006' and scene_value_id == 'KeyHeldDown' }}"
+      - conditions:
+        - "{{ scene_id == '006' }}"
+        - "{{ scene_value_id == 'KeyHeldDown' }}"
         sequence: !input button_6_held
-      - conditions: "{{ scene_id == '006' and scene_value_id == 'KeyReleased' }}"
+      - conditions:
+        - "{{ scene_id == '006' }}"
+        - "{{ scene_value_id == 'KeyReleased' }}"
         sequence: !input button_6_hold_release
-      - conditions: "{{ scene_id == '007' and scene_value_id == 'KeyPressed' }}"
+      - conditions:
+        - "{{ scene_id == '007' }}"
+        - "{{ scene_value_id == 'KeyPressed' }}"
         sequence: !input button_7_1
-      - conditions: "{{ scene_id == '007' and scene_value_id == 'KeyPressed2x' }}"
+      - conditions:
+        - "{{ scene_id == '007' }}"
+        - "{{ scene_value_id == 'KeyPressed2x' }}"
         sequence: !input button_7_2
-      - conditions: "{{ scene_id == '007' and scene_value_id == 'KeyHeldDown' }}"
+      - conditions:
+        - "{{ scene_id == '007' }}"
+        - "{{ scene_value_id == 'KeyHeldDown' }}"
         sequence: !input button_7_held
-      - conditions: "{{ scene_id == '007' and scene_value_id == 'KeyReleased' }}"
+      - conditions:
+        - "{{ scene_id == '007' }}"
+        - "{{ scene_value_id == 'KeyReleased' }}"
         sequence: !input button_7_hold_release
-      - conditions: "{{ scene_id == '008' and scene_value_id == 'KeyPressed' }}"
+      - conditions:
+        - "{{ scene_id == '008' }}"
+        - "{{ scene_value_id == 'KeyPressed' }}"
         sequence: !input button_8_1
-      - conditions: "{{ scene_id == '008' and scene_value_id == 'KeyPressed2x' }}"
+      - conditions:
+        - "{{ scene_id == '008' }}"
+        - "{{ scene_value_id == 'KeyPressed2x' }}"
         sequence: !input button_8_2
-      - conditions: "{{ scene_id == '008' and scene_value_id == 'KeyHeldDown' }}"
+      - conditions:
+        - "{{ scene_id == '008' }}"
+        - "{{ scene_value_id == 'KeyHeldDown' }}"
         sequence: !input button_8_held
-      - conditions: "{{ scene_id == '008' and scene_value_id == 'KeyReleased' }}"
+      - conditions:
+        - "{{ scene_id == '008' }}"
+        - "{{ scene_value_id == 'KeyReleased' }}"
         sequence: !input button_8_hold_release
