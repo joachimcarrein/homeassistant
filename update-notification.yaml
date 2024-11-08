@@ -127,44 +127,44 @@ trigger_variables:
   reminder_hours: "{{ _reminder_hours | default(0) | int(0) }}"
   run_config_check: !input run_config_check
   update_entities: !input update_entities
-trigger:
+triggers:
   - id: new
-    platform: state
+    trigger: state
     entity_id: !input update_entities
     to: "on"
   - id: started
-    platform: state
+    trigger: state
     entity_id: !input update_entities
     attribute: in_progress
     from: false
     to: true
   - id: done
-    platform: state
+    trigger: state
     entity_id: !input update_entities
     from: "on"
     to: "off"
   - id: install
-    platform: event
+    trigger: event
     event_type: mobile_app_notification_action
     event_data:
       action: install-update
   - id: install_ios
-    platform: event
+    trigger: event
     event_type: mobile_app_notification_action
     event_data:
       actionName: install-update
   - id: skip
-    platform: event
+    trigger: event
     event_type: mobile_app_notification_action
     event_data:
       action: skip-update
   - id: skip_ios
-    platform: event
+    trigger: event
     event_type: mobile_app_notification_action
     event_data:
       actionName: skip-update
   - id: core_check
-    platform: template
+    trigger: template
     value_template:
       "{% set ns = namespace(core=none) %} {% for u in integration_entities('hassio')
       | select('in', update_entities)\n        if (device_attr(u, 'identifiers') | first)[1]
@@ -176,15 +176,15 @@ trigger:
       | first | attr('last_changed') }}\n  {% endfor %}\n{% else %}\n  {{ false }}\n{%
       endif %}"
   - id: ha_start
-    platform: homeassistant
+    trigger: homeassistant
     event: start
-  - platform: template
+  - trigger: template
     value_template:
       "{{ states.update | selectattr('state', 'eq', 'on') | list | count
       > 0\n  and reminder_hours > 0 and now().hour % reminder_hours == 0\n  and now().minute
       == 0 and now().second == 0 }}"
   - id: sticky_ios
-    platform: event
+    trigger: event
     event_type: mobile_app_notification_action
     event_data:
       action: URI
@@ -216,7 +216,7 @@ variables:
     title: Update
     destructive: true
     authenticationRequired: true
-action:
+actions:
   choose:
     - alias: Install update action
       conditions: "{{ trigger.id in ['install', 'install_ios'] }}"
@@ -226,7 +226,7 @@ action:
               "update.{{ trigger.event.data.tag\n  if trigger.event.data.tag
               is string and trigger.event.data.tag != ''\n  else trigger.event.data.action_data.tag
               }}"
-        - service: update.install
+        - action: update.install
           data:
             entity_id: "{{ entity_id }}"
             backup:
@@ -236,7 +236,7 @@ action:
     - alias: Skip update action
       conditions: "{{ trigger.id in ['skip', 'skip_ios'] }}"
       sequence:
-        service: update.skip
+        action: update.skip
         data:
           entity_id:
             "update.{{ trigger.event.data.tag\n  if trigger.event.data.tag
@@ -293,7 +293,7 @@ action:
           choose:
             conditions: "{{ send_to_ha }}"
             sequence:
-              service: persistent_notification.dismiss
+              action: persistent_notification.dismiss
               data:
                 notification_id: "{{ entity_id[7:] }}"
     - alias: On startup, dismiss core and os notifications as they occurred while off
@@ -392,7 +392,7 @@ action:
           choose:
             conditions: "{{ send_to_ha }}"
             sequence:
-              service: persistent_notification.create
+              action: persistent_notification.create
               data:
                 notification_id: "{{ entity_id[7:] }}"
                 title: "{{ title }}"
@@ -403,7 +403,7 @@ action:
         - alias: Stop if this isn't core or we're not running a config check
           condition: "{{ include_core_check }}"
         - alias: Start config check addon
-          service: hassio.addon_start
+          action: hassio.addon_start
           data:
             addon: core_check_config
     - alias: Emulate sticky on IOS by recreating the notification
